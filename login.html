@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login - Disaster Response App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>🔐 Login</h2>
+
+    <form id="loginForm">
+      <input id="identifier" type="text" placeholder="📧 Email or Phone" required />
+      <input id="password" type="password" placeholder="🔒 Password" required />
+      <button type="submit" class="btn">Login</button>
+    </form>
+
+    <p style="margin-top:20px;color:#7f8c8d;">
+      Don't have an account?
+      <a href="signup.html" style="color:#3498db;text-decoration:none;font-weight:500;">Sign Up</a>
+    </p>
+
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+
+<script>
+function getUsers() {
+  return JSON.parse(localStorage.getItem('users') || '[]');
+}
+
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const identifier = document.getElementById('identifier').value.trim();
+  const password = document.getElementById('password').value;
+
+  const users = getUsers();
+  const user = users.find(u =>
+    (u.email.toLowerCase() === identifier.toLowerCase() || u.phone === identifier) &&
+    u.password === password
+  );
+
+  if (!user) {
+    alert('Invalid credentials. Please check email/phone and password.');
+    return;
+  }
+
+  // Save minimal current user data for session-like behavior
+  localStorage.setItem('currentUser', JSON.stringify({
+    id: user.id,
+    fullName: user.fullName,
+    email: user.email,
+    phone: user.phone
+  }));
+
+  alert('Login successful! Redirecting to home...');
+  window.location.href = "home.html";
+});
+</script>
+</body>
+</html>

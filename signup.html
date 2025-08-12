@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sign Up - Disaster Response App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>📝 Create Account</h2>
+
+    <form id="signupForm">
+      <input id="fullName" type="text" placeholder="👤 Full Name" required />
+      <input id="email" type="email" placeholder="📧 Email" required />
+      <input id="phone" type="tel" placeholder="📱 Phone Number" required />
+      <input id="password" type="password" placeholder="🔒 Password" required />
+      <input id="confirmPassword" type="password" placeholder="🔒 Confirm Password" required />
+      <button type="submit" class="btn success">Create Account</button>
+    </form>
+
+    <p style="margin-top:20px;color:#7f8c8d;">
+      Already have an account?
+      <a href="login.html" style="color:#3498db;text-decoration:none;font-weight:500;">Login</a>
+    </p>
+
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+
+<script>
+/* Helper functions */
+function getUsers() {
+  return JSON.parse(localStorage.getItem('users') || '[]');
+}
+function saveUsers(users) {
+  localStorage.setItem('users', JSON.stringify(users));
+}
+
+/* Signup handler */
+document.getElementById('signupForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const fullName = document.getElementById('fullName').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+
+  if (!fullName || !email || !phone || !password || !confirmPassword) {
+    alert('Please fill in all fields');
+    return;
+  }
+  if (password !== confirmPassword) {
+    alert('Passwords do not match');
+    return;
+  }
+  if (password.length < 6) {
+    alert('Password must be at least 6 characters long');
+    return;
+  }
+
+  const users = getUsers();
+  const exists = users.some(u =>
+    u.email.toLowerCase() === email.toLowerCase() || u.phone === phone
+  );
+  if (exists) {
+    alert('An account with that email or phone already exists');
+    return;
+  }
+
+  const newUser = {
+    id: Date.now().toString(),
+    fullName,
+    email,
+    phone,
+    password   // NOTE: stored in plain text — OK for demo only
+  };
+
+  users.push(newUser);
+  saveUsers(users);
+
+  alert('Account created successfully! Please login.');
+  window.location.href = 'login.html';
+});
+</script>
+</body>
+</html>

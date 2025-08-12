@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome - Disaster Response App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🚨 Community Disaster Response</h1>
+    <p class="subtitle">Be prepared. Stay safe. Help others.</p>
+    <div class="buttons">
+      <a href="login.html" class="btn">Login</a>
+      <a href="signup.html" class="btn success">Sign Up</a>
+      <a href="guest.html" class="btn secondary">Continue as Guest</a>
+    </div>
+    
+    <div class="nav-buttons">
+      <a href="emergency.html" class="nav-btn">🆘 Emergency Info</a>
+      <a href="about.html" class="nav-btn">ℹ️ About</a>
+    </div>
+  </div>
+</body>
+<script>
+(function () {
+  const cur = JSON.parse(localStorage.getItem('currentUser') || 'null');
+  if (!cur) return;
+
+  const container = document.querySelector('.container') || document.body;
+  const el = document.createElement('div');
+  el.style.marginBottom = '12px';
+  el.innerHTML = `<div style="padding:10px;background:#f2f9f9;border-radius:8px;margin-bottom:12px;">
+    Welcome, <strong>${cur.fullName}</strong> — <a href="#" id="logoutLink">Logout</a>
+  </div>`;
+  container.insertBefore(el, container.firstChild);
+
+  document.getElementById('logoutLink').addEventListener('click', function(e) {
+    e.preventDefault();
+    localStorage.removeItem('currentUser');
+    location.reload();
+  });
+})();
+</script>
+
+</html>
