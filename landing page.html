@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Community Disaster Response</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0891b2;
+      --secondary: #4f46e5;
+      --dark: #222;
+      --light: #f0f4f8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 95%;
+      max-width: 1200px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      padding: 12px 24px;
+      border-radius: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    header .logo {
+      font-weight: 900;
+      font-size: 1.5rem;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    nav a {
+      margin: 0 12px;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: var(--primary); }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.5), transparent);
+    }
+    .hero-content {
+      position: relative;
+      max-width: 800px;
+      padding: 20px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+    .hero p { font-size: 1.2rem; }
+
+    /* Sections */
+    section {
+      padding: 100px 20px;
+      scroll-margin-top: 120px;
+    }
+    section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    section p {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      color: #555;
+    }
+
+    /* Features Grid */
+    .grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .card {
+      background: rgba(255,255,255,0.9);
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+    }
+    .card h3 { margin: 10px 0; font-size: 1.2rem; }
+
+    /* About */
+    .about-container {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+    }
+    .about-container img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .about-text { flex: 1; }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: #ccc;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    footer .logo {
+      font-size: 1.8rem;
+      font-weight: 900;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    footer p { margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <span class="logo">Community Disaster</span>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#tech">Technical Highlights</a>
+      <a href="#about">About</a>
+    </nav>
+    <div>
+      <a href="login.html" style="text-decoration:none; font-weight:600; color:var(--dark);">Login</a>
+      <a href="signup.html" style="margin-left:10px; background:var(--dark); color:#fff; padding:6px 16px; border-radius:20px; text-decoration:none; font-weight:600;">Sign Up</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Connecting Communities<br>When It Matters Most</h1>
+      <p>Real-time, crowdsourced safety updates to coordinate response and save lives during natural disasters.</p>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features">
+    <h2>Key Features</h2>
+    <p>Empowering communities with the tools they need to respond effectively.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>⚠ Instant SOS Alerts</h3>
+        <p>Send emergency alerts with your live location.</p>
+      </div>
+      <div class="card">
+        <h3>🗺 Live Safe Zone Maps</h3>
+        <p>Find shelters, medical camps & hazard-free zones.</p>
+      </div>
+      <div class="card">
+        <h3>🙌 Volunteer Coordination</h3>
+        <p>Organize and join volunteer teams for relief efforts.</p>
+      </div>
+      <div class="card">
+        <h3>📶 Offline Mode</h3>
+        <p>Access cached maps & alerts even without internet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Highlights -->
+  <section id="tech" style="background:#f9f9f9;">
+    <h2>Technical Highlights</h2>
+    <p>Built with resilience and reliability in mind.</p>
+    <div class="grid">
+      <div class="card"><h3>⚡ Service Workers</h3><p>Offline access to maps and alerts.</p></div>
+      <div class="card"><h3>🔔 Push Notifications</h3><p>Deliver life-saving alerts instantly.</p></div>
+      <div class="card"><h3>🗺 Leaflet.js Maps</h3><p>Interactive lightweight safe zone maps.</p></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="about-container">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn9UOBw2kO9HPc52c2LkbNwpeW3rDOa_LNDw&s" alt="Disaster Relief Volunteers">
+      <div class="about-text">
+        <h2>About Community Disaster Response</h2>
+        <p>In times of crisis, coordination can save lives. Many disaster-prone communities face challenges due to delayed communication and lack of reliable updates.</p>
+        <p>This platform bridges that gap with real-time maps, crowdsourced alerts, and volunteer coordination tools.</p>
+        <p>Our mission: empower communities with technology so no one is left behind in a disaster.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="logo">Community Disaster</div>
+    <p>Stay safe. Stay connected.</p>
+    <p style="margin-top:10px;">&copy; 2024 Community Disaster Response. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
